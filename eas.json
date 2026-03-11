@@ -14,7 +14,8 @@
     "preview": {
       "distribution": "internal",
       "ios": {
-        "simulator": false
+        "simulator": false,
+        "image": "macos-sonoma-14.1-xcode-15.4"
       },
       "channel": "preview"
     },
