@@ -49,9 +49,7 @@
     ],
     "scheme": "milo-companion",
     "extra": {
-      "eas": {
-        "projectId": "milo-companion"
-      }
+      "eas": {}
     },
     "owner": "milo-bragg"
   }
