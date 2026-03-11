@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": "Milo Companion",
+    "slug": "milo-companion",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0a0a0a"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "ai.openclaw.milo.companion",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Milo Companion uses the microphone for voice input.",
+        "NSSpeechRecognitionUsageDescription": "Milo Companion uses speech recognition to transcribe your voice messages."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0a0a0a"
+      },
+      "package": "ai.openclaw.milo.companion",
+      "permissions": [
+        "RECORD_AUDIO",
+        "INTERNET"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#3b82f6",
+          "sounds": [],
+          "mode": "production"
+        }
+      ],
+      "expo-secure-store",
+      "expo-speech"
+    ],
+    "scheme": "milo-companion",
+    "extra": {
+      "eas": {
+        "projectId": "milo-companion"
+      }
+    },
+    "owner": "milo-bragg"
+  }
+}
