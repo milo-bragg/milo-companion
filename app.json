@@ -45,8 +45,7 @@
           "mode": "production"
         }
       ],
-      "expo-secure-store",
-      "expo-speech"
+      "expo-secure-store"
     ],
     "scheme": "milo-companion",
     "extra": {
