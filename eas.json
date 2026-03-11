@@ -26,9 +26,8 @@
   "submit": {
     "production": {
       "ios": {
-        "appleId": "milo.bragg.ai@gmail.com",
-        "ascAppId": "",
-        "appleTeamId": ""
+        "appleId": "jasonbragg@youremail.com",
+        "appleTeamId": "28NBCD6AWG"
       }
     }
   }

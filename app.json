@@ -15,6 +15,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "ai.openclaw.milo.companion",
+      "appleTeamId": "28NBCD6AWG",
       "infoPlist": {
         "NSMicrophoneUsageDescription": "Milo Companion uses the microphone for voice input.",
         "NSSpeechRecognitionUsageDescription": "Milo Companion uses speech recognition to transcribe your voice messages."
