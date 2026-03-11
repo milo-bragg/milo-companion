@@ -1,5 +1,0 @@
-{
-  "name": "hermes-compiler",
-  "version": "0.0.1",
-  "description": "Stub shim for RN 0.79 + Expo SDK 55 compatibility. The hermesc binary lives in react-native/sdks/hermesc/."
-}
