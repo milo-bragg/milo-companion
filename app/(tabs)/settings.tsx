@@ -19,13 +19,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useGateway } from '../_layout';
 import { ConnectionStatus } from '../../components/ConnectionStatus';
-import { saveGatewayUrl, clearAll, getGatewayUrl } from '../../lib/storage';
+import { saveGatewayUrl, clearAll, getGatewayUrl, saveGatewayAuthToken, getGatewayAuthToken } from '../../lib/storage';
 import { getOrCreateKeypair, getDeviceId } from '../../lib/crypto';
 import { encodeBase64 } from 'tweetnacl-util';
 
 export default function SettingsScreen() {
   const { connectionState, connectionError, gatewayUrl, reconnect } = useGateway();
   const [urlInput, setUrlInput] = useState('');
+  const [authTokenInput, setAuthTokenInput] = useState('');
   const [deviceId, setDeviceId] = useState('');
   const [publicKey, setPublicKey] = useState('');
   const [isSaving, setIsSaving] = useState(false);
@@ -34,6 +35,7 @@ export default function SettingsScreen() {
   useEffect(() => {
     setUrlInput(gatewayUrl);
     loadDeviceInfo();
+    getGatewayAuthToken().then(setAuthTokenInput);
   }, [gatewayUrl]);
 
   const loadDeviceInfo = async () => {
@@ -57,6 +59,7 @@ export default function SettingsScreen() {
     setIsSaving(true);
     try {
       await saveGatewayUrl(url);
+      await saveGatewayAuthToken(authTokenInput.trim());
       await reconnect(url);
     } catch (e) {
       Alert.alert('Connection Failed', `Could not connect to ${url}.\n\n${String(e)}`);
@@ -115,11 +118,22 @@ export default function SettingsScreen() {
             style={styles.urlInput}
             value={urlInput}
             onChangeText={setUrlInput}
-            placeholder="wss://xxxx.trycloudflare.com"
+            placeholder="https://xxxx.trycloudflare.com"
             placeholderTextColor="#4b5563"
             autoCapitalize="none"
             autoCorrect={false}
             keyboardType="url"
+          />
+          <Text style={[styles.label, { marginTop: 8 }]}>Auth Token</Text>
+          <TextInput
+            style={styles.urlInput}
+            value={authTokenInput}
+            onChangeText={setAuthTokenInput}
+            placeholder="Paste gateway token here"
+            placeholderTextColor="#4b5563"
+            autoCapitalize="none"
+            autoCorrect={false}
+            secureTextEntry={true}
           />
           <TouchableOpacity
             style={[styles.primaryButton, isSaving && styles.primaryButtonDisabled]}

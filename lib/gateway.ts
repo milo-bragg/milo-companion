@@ -4,7 +4,7 @@
  */
 import { encodeBase64 } from 'tweetnacl-util';
 import { getOrCreateKeypair, getDeviceId, signDevicePayload } from './crypto';
-import { saveDeviceToken, getDeviceToken } from './storage';
+import { saveDeviceToken, getDeviceToken, getGatewayAuthToken } from './storage';
 import { notifyNewMessage } from './notifications';
 
 // Generate a UUID v4
@@ -256,6 +256,7 @@ export class GatewayClient {
       const deviceId = await getDeviceId(keypair);
       const publicKeyB64 = encodeBase64(keypair.publicKey);
       const deviceToken = await getDeviceToken();
+      const gatewayAuthToken = await getGatewayAuthToken();
       const signedAt = Date.now();
 
       const signature = signDevicePayload({
@@ -288,7 +289,7 @@ export class GatewayClient {
           caps: [],
           commands: [],
           permissions: {},
-          auth: { token: deviceToken ?? '' },
+          auth: { token: gatewayAuthToken || deviceToken || '' },
           locale: 'en-US',
           userAgent: 'milo-companion/1.0.0',
           device: {

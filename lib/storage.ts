@@ -6,6 +6,7 @@ import * as SecureStore from 'expo-secure-store';
 const DEVICE_TOKEN_KEY = 'milo_device_token';
 const GATEWAY_URL_KEY = 'milo_gateway_url';
 const SESSION_KEY_KEY = 'milo_current_session';
+const GATEWAY_AUTH_TOKEN_KEY = 'milo_gateway_auth_token';
 
 export const DEFAULT_GATEWAY_URL = 'wss://recipients-medicaid-properly-surgeon.trycloudflare.com';
 export const DEFAULT_SESSION_KEY = 'main';
@@ -42,11 +43,23 @@ export async function getSessionKey(): Promise<string> {
   return key ?? DEFAULT_SESSION_KEY;
 }
 
+/** Save the gateway auth token (static bearer token from openclaw.json) */
+export async function saveGatewayAuthToken(token: string): Promise<void> {
+  await SecureStore.setItemAsync(GATEWAY_AUTH_TOKEN_KEY, token);
+}
+
+/** Retrieve the gateway auth token */
+export async function getGatewayAuthToken(): Promise<string> {
+  const token = await SecureStore.getItemAsync(GATEWAY_AUTH_TOKEN_KEY);
+  return token ?? '';
+}
+
 /** Clear all stored credentials (for reset/logout) */
 export async function clearAll(): Promise<void> {
   await Promise.all([
     SecureStore.deleteItemAsync(DEVICE_TOKEN_KEY),
     SecureStore.deleteItemAsync(GATEWAY_URL_KEY),
     SecureStore.deleteItemAsync(SESSION_KEY_KEY),
+    SecureStore.deleteItemAsync(GATEWAY_AUTH_TOKEN_KEY),
   ]);
 }
