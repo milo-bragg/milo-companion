@@ -1,6 +1,7 @@
 /**
  * Root layout — sets up the gateway connection context and navigation.
  */
+import 'react-native-get-random-values';
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { Stack } from 'expo-router';
 import { AppState, AppStateStatus, StatusBar } from 'react-native';

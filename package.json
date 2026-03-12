@@ -24,6 +24,7 @@
     "react-native": "0.79.1",
     "react-native-safe-area-context": "~5.6.2",
     "react-native-screens": "~4.23.0",
+    "react-native-get-random-values": "~1.11.0",
     "tweetnacl": "^1.0.3",
     "tweetnacl-util": "^0.15.1",
     "uuid": "^11.1.0"
